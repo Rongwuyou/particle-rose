@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>粒子玫瑰</title>
+<style>
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#000}body{position:fixed;inset:0}.banner{position:absolute;inset:0;display:grid;place-items:center;background:#000}.banner video{width:100%;height:100%;object-fit:contain;background:#000}.tip{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom));transform:translateX(-50%);padding:8px 14px;border:1px solid #ffffff40;border-radius:20px;color:#eee;background:#0008;font:12px -apple-system,BlinkMacSystemFont,sans-serif;backdrop-filter:blur(8px);opacity:0;transition:.3s;pointer-events:none}.tip.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="banner"><video id="rose" autoplay muted loop playsinline webkit-playsinline preload="auto"><source src="particle_rose.mp4" type="video/mp4"></video></div>
+<div class="tip" id="tip">轻点开启声音</div>
+<script>
+const v=document.getElementById('rose'),tip=document.getElementById('tip');
+v.play().catch(()=>{});
+if(v.muted){tip.classList.add('show');setTimeout(()=>tip.classList.remove('show'),2600)}
+document.addEventListener('click',()=>{v.muted=false;v.play().catch(()=>{});tip.classList.remove('show')},{once:true});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)v.play().catch(()=>{})});
+</script>
+</body>
+</html>
